@@ -29,8 +29,11 @@ class LinkedList(object):
 		self.__last = None
 		self.__size = 0
 
-		if seq is None:
+		if not seq:
 			return 
+
+		if not hasattr(seq, '__iter__'):
+			raise TypeError('the given object is not iterable')
 
 		for item in seq:
 			node = Node(item)
@@ -76,6 +79,7 @@ class LinkedList(object):
 		else:
 			self.__last.next = node 
 		self.__last = node
+		self.__last.next = None
 		self.__size += 1
 
 		return node
@@ -109,6 +113,7 @@ class LinkedList(object):
 			raise IndexError('pop from empty list')
 		node = self.__first
 		self.__first = node.next
+
 		self.__size -= 1
 		return node.value
 
@@ -125,6 +130,8 @@ class LinkedList(object):
 			current = current.next
 		node = current.next
 		current.next = None
+
+		self.__last = current
 		self.__size -= 1
 		return node.value
 		
@@ -231,23 +238,26 @@ if __name__ == '__main__':
 	# llist.append(3)
 	# print llist
 	# print llist.index('a')
-	print llist.pop(0)
-	print llist
-	llist.insert(1,1)
-	print llist
-	print llist[0]
-	llist[2] = 9
-	print llist
-	llist.append([1,2,3])
+	# print llist.pop()
+	# print llist
+	# llist.insert(0,1)
+	# print llist
+	# print llist[0]
+	# llist[2] = 9
+	# print llist
+	# llist.append([1,2,3])
 	llist.append(9)
-	print len(llist[3])
+	print llist.last().value
 
-	print llist.extend([1,2,3])
-	print llist.extend((1,2,3))
-	# print llist.extend(1)
-	llist_tmp = LinkedList([1])
-	print llist.extend(llist_tmp)
-	print llist.count(1)
+	print llist
+	# print len(llist[3])
+
+	# print llist.extend([1,2,3])
+	# print llist.extend((1,2,3))
+	# # print llist.extend(1)
+	# llist_tmp = LinkedList([1])
+	# print llist.extend(llist_tmp)
+	# print llist.count(1)
 
 
 
