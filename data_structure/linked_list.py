@@ -1,5 +1,9 @@
 #coding:utf-8
 
+'''
+	singly linked list
+'''
+
 class Node(object):
 	
 	__slots__ = {'value', '__next'}
