@@ -1,11 +1,8 @@
 # coding:utf-8
-
-'''
-	Doubly linked list
-'''
-
+#coding:utf-8
 
 class Node(object):
+
 	
 	__slots__ = {'value', '__next', '__prev'}
 
@@ -29,7 +26,11 @@ class Node(object):
 	def prev(self, x):
 		self.__prev = x
 
+
 class DLinkedList(object):
+	'''Doubly linked list'''
+
+
 	__slots__ = {'__first', '__last', '__size'}
 
 	def __init__(self, seq=None):
@@ -56,21 +57,22 @@ class DLinkedList(object):
 			self.__size += 1
 		self.__last.next = None	
 
-	#return thr first node of list
 	def first(self):
+		'''return thr first node of list'''
 		return self.__first
 
-	#return thr last node of list
 	def last(self):
+		'''return thr last node of list'''
 		return self.__last
 
-	#return thr size of list
 	def size(self):
+		'''return thr size of list'''
 		return self.__size
 
-	# Return the index in the list of the first item whose value is x. It is an error if there is 
-	# no such item
 	def index(self, x):
+		'''Return the index in the list of the first item whose value is x. It is an error if
+		there is no such item
+		'''
 		current = self.__first
 		index = 0
 		while current is not None:
@@ -80,9 +82,8 @@ class DLinkedList(object):
 			index += 1
 		raise ValueError('{0} not in the list'.format(x)) #future	
 
-
-	# Add an item to the right of the list
 	def appendright(self, x):
+		'''Add an item to the right of the list'''
 		node = Node(x)
 		if self.__first is None: # The list is None
 			self.__first = node
@@ -96,8 +97,8 @@ class DLinkedList(object):
 
 		return node
 
-	# Add an item to thr first of the list
 	def appendleft(self, x):
+		'''Add an item to thr first of the list'''	
 		node = Node(x)
 
 		if self.__first:		
@@ -110,23 +111,21 @@ class DLinkedList(object):
 		self.__size += 1
 		return node			
 
-	# Add an item to the end of the list	
 	def append(self, x):
+		'''Add an item to the end of the list'''	
 		return self.appendright(x)
 
-
-	# Extend the list by appending all the items in the given seq
-	# seq need to have attribute __iter__
 	def extend(self, seq):
+		'''Extend the list by appending all the items in the given seq
+		seq need to have attribute __iter__'''
 		if not hasattr(seq, '__iter__'):
 			raise TypeError('the given object is not iterable')
 		for value in seq:
 			self.appendright(value)
 		return self
 
-
-	# Remove the first left item in the list, and return it.
 	def popleft(self):
+		'''Remove the first left item in the list, and return it.'''
 		if self.__first is None:
 			raise IndexError('pop from empty list')
 		node = self.__first
@@ -138,9 +137,8 @@ class DLinkedList(object):
 		self.__size -= 1
 		return node.value
 
-
-	# Remove the first right item in the list, and return it.
 	def popright(self): 
+		'''Remove the first right item in the list, and return it.'''
 		if self.__last is None:
 			raise IndexError('pop from empty list')
 		if self.__last is self.__first: # Only one item
@@ -152,12 +150,12 @@ class DLinkedList(object):
 		self.__size -= 1
 		return node.value
 		
-
-	# Remove the item at the given position in the list, and return it.
-	# If no index is specified, a.pop() removes and returns the last item in the list.
-	# Note : Don't support a positive index 
 	def pop(self, index=None):
+		'''Remove the item at the given position in the list, and return it.
 
+		If no index is specified, a.pop() removes and returns the last item in the list.
+		Note : Don't support a positive index 
+		'''
 		if index is None: # not give position parameter
 			return self.popright()
 		if not isinstance(index, int):
@@ -180,10 +178,10 @@ class DLinkedList(object):
 		self.__size -= 1
 		return current.value
 
-	# Insert an item at a given position.
-	# Note : Don't support a positive index 
 	def insert(self, index, x):
-
+		''' Insert an item at a given position.
+		Note : Don't support a positive index 
+		'''
 		if not isinstance(index, int):
 			raise TypeError('an positive integer is required')
 		if index < 0:
@@ -209,8 +207,8 @@ class DLinkedList(object):
 		self.__size += 1
 		return x
 
-	# Return the number of times x appears in the list.
 	def count(self, x):
+		''' Return the number of times x appears in the list.'''
 		current = self.__first
 		cnt = 0
 		while current:
@@ -236,10 +234,8 @@ class DLinkedList(object):
 	def __setitem__(self, index, value):
 		self._nodeat(index).value = value
 
-
-
-	# find an node by the given index in the list
 	def _nodeat(self, index):
+		''' find an node by the given index in the list'''
 		current = self.__first
 		for _ in range(index):
 			current = current.next
