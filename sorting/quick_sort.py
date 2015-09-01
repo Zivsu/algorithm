@@ -1,11 +1,8 @@
 
+'''quick sort
 '''
-    quick sort
-'''
-
 
 def sort(seq):
-
     if len(seq) <= 1:
         return seq
     pivot = seq[0]
@@ -22,8 +19,6 @@ def sort_concise(seq):
         return seq
     return sort_concise([x for x in seq[1:] if x <= seq[0]]) + [seq[0]] + \
             sort_concise([x for x in seq[1:] if x > seq[0]])
-
-
 
 if __name__ == '__main__':
     seq = [1,3,4,2,3,1]

@@ -1,5 +1,5 @@
-'''
-	select sort
+
+'''select sort
 '''
 
 def sort(seq):
@@ -11,8 +11,7 @@ def sort(seq):
 		if i != min:		
 			seq[i], seq[min] = seq[min], seq[i]
 	return seq
-		
-
+	
 if __name__ == '__main__':
 	seq = [1,3,4,2,3,1]
 	print sort(seq)

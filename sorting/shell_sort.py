@@ -1,5 +1,4 @@
-'''
-	shell sort
+'''shell sort
 '''
 
 def sort(seq):

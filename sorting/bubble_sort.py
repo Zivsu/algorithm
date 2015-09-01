@@ -1,6 +1,5 @@
 
-'''
-	bubble sort
+'''	bubble sort
 '''
 
 def sort(seq):
