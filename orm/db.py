@@ -58,7 +58,7 @@ class OperSQL(object):
 
 	@classmethod
 	def insert(cls, table, **kws):
-		#insert into user (username, password) values (%s, %s)
+		'''insert into user (username, password) values (%s, %s)'''
 		sql = 'insert into {} ({}) values ({})'.format(table, ', '.join([k for k in kws.keys()]), 
 				', '.join(['%s' for _ in range(len(kws))]))
 		_params = [value for value in kws.itervalues()]
@@ -73,8 +73,9 @@ class OperSQL(object):
 		self._execute(sql, self.where_params) 
 		
 
-    # update students set tel=default where id=5
+    
 	def update(self, **kws):
+		'''update students set tel=default where id=5'''
 		sql = 'update {} set {} {}'.format(self.model.table, ' and '.join(['{}=%s'.format(k)
 				for k in kws.keys()]), self.where_exp)
 		print sql
@@ -95,10 +96,14 @@ class OperSQL(object):
 		return self
 
 
-	#@param rows: 排序的列的列表
-	#@param orders: 一对一映射rows
-	#sql:order by company desc, ordernumber asc
+	
 	def order_by(self, rows, orders):
+		''' query order 
+
+		rows argement-> 排序的列的列表
+		orders argement -> 一对一映射rows
+	  	sql:order by company desc, ordernumber asc
+	  	'''
 		if len(rows) != len(orders):
 			raise ValueError('the length of two sequence is not equal')
 
@@ -121,10 +126,9 @@ class OperSQL(object):
 		DB.cleanup()
 		return row_cnt
 
-		
-	'''deal with crud opetation
-	'''
 	def _execute(self, sql, params):
+		'''deal with crud opetation
+		'''
 		try:
 			DB.execute(sql, _params) 
 			DB.commit()
@@ -133,7 +137,7 @@ class OperSQL(object):
 
 
 	def _select(self, first=False):
-		# select * from table where name='suwen'
+		'''select * from table where name="suwen"'''
 		sql = 'select * from {}{}'.format(self.model.table, self.where_exp)
 		
 		cursor = DB.execute(sql, self.where_params) 
@@ -151,8 +155,8 @@ class OperSQL(object):
 		DB.cleanup()		
 		return d
 		
-	#deal with the data about what returns from select sentence					
 	def _dict(self, names=(), values=()):
+		'''deal with the data about what returns from select sentence'''
 		d = {}
 		for k, v in zip(names, values):
 			d[k] = v
