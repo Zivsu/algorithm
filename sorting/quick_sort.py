@@ -1,6 +1,7 @@
+# !/usr/bin/python
+# coding:utf8
 
-'''quick sort
-'''
+"""quick sort"""
 
 def sort(seq):
     if len(seq) <= 1:

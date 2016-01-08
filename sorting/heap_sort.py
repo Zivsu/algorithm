@@ -1,5 +1,7 @@
-'''heap sorting
-'''
+# !/usr/bin/python
+# coding:utf8
+
+"""heap sorting"""
 
 def sort(seq):
     import heapq
@@ -9,5 +11,4 @@ def sort(seq):
 
 
 if __name__ == '__main__':
-       
     print sort([1,2,3,1,2])

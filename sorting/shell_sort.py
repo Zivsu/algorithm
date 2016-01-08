@@ -1,5 +1,7 @@
-'''shell sort
-'''
+# !/usr/bin/python
+# coding:utf8
+
+"""shell sort"""
 
 def sort(seq):
 	length = len(seq)
@@ -14,4 +16,4 @@ def sort(seq):
 
 if __name__ == '__main__':
 	seq = [1,3,4,2,3,1]
-	print sort(seq)	
+	print sort(seq)

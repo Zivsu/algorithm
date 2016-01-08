@@ -1,6 +1,7 @@
+# !/usr/bin/env pyton
+# coding:utf-8
 
-'''	bubble sort
-'''
+"""bubble sort"""
 
 def sort(seq):
     length = len(seq)
@@ -21,14 +22,14 @@ def sort_concise(seq):
 		    if seq[n - 1] > seq[n]:
 		    	seq[n - 1], seq[n] = seq[n], seq[n - 1]
 	return seq
-	
+
 
 if __name__ == '__main__':
-	# seq = [1,3,4,2,3,1]
-	seq = []
+	seq = [1,3,4,2,3,1]
+	# seq = []
 	print sort(seq)
 	print sort_concise(seq)
 
 
 
-    
+
